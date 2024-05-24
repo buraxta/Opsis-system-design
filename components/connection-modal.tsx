@@ -17,6 +17,40 @@ import CollapsibleComp from "./collapsibleComp";
 
 const ConnectionModal = () => {
   const [url, setUrl] = useState("ftp://");
+  const [userConfigs, setUserConfigs] = useState({
+    protocol: 0,
+    server: "",
+    port: "",
+    username: "",
+    password: "",
+  });
+
+  const [images, setImages] = useState([]);
+  const [files, setFiles] = useState([]);
+
+  const handleDrop = (acceptedFiles) => {
+    const newImages = acceptedFiles.map((file) => URL.createObjectURL(file));
+    setImages((prev) => [...prev, ...newImages]);
+    setFiles((prev) => [...prev, ...acceptedFiles]);
+  };
+
+  const handleUpload = () => {
+    const formData = new FormData();
+    files.forEach((file) => formData.append("file", file));
+
+    fetch("http://127.0.0.1:5000/upload", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
   return (
     <div className="flex">
       <Dialog>
@@ -30,7 +64,7 @@ const ConnectionModal = () => {
               Open Connection
             </DialogTitle>
             <DialogDescription>
-              <Dropdown />
+              <Dropdown setUserConfigs={setUserConfigs} />
               <div>
                 <section className="flex items-center mt-2 w-full justify-between  ">
                   <div className="flex w-full items-center">
@@ -78,7 +112,7 @@ const ConnectionModal = () => {
                     Private Key:{" "}
                   </p>
                   <Input
-                    value={"None"}
+                    defaultValue={"None"}
                     disabled
                     className="ml-3 h-7 border-0 border-b-2 focus-visible:ring-0 focus-visible:ring-offset-0  border-slate-400 focus:border-blue-700"
                   />
@@ -101,7 +135,11 @@ const ConnectionModal = () => {
                   </button>
                 </section>
                 <section>
-                  <CollapsibleComp />
+                  <CollapsibleComp
+                    handleDrop={handleDrop}
+                    handleUpload={handleUpload}
+                    images={images}
+                  />
                 </section>
               </div>
             </DialogDescription>

@@ -6,7 +6,7 @@ import {
 import { ArrowBigDownDash } from "lucide-react";
 import DropFile from "./dropFile";
 
-const CollapsibleComp = () => {
+const CollapsibleComp = ({ handleDrop, handleUpload, images }) => {
   return (
     <Collapsible>
       <CollapsibleTrigger>
@@ -16,7 +16,11 @@ const CollapsibleComp = () => {
         </div>
       </CollapsibleTrigger>
       <CollapsibleContent>
-        <DropFile />
+        <DropFile
+          handleDrop={handleDrop}
+          handleUpload={handleUpload}
+          images={images}
+        />
       </CollapsibleContent>
     </Collapsible>
   );

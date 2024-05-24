@@ -22,7 +22,7 @@ const Header = () => {
         <Separator />
         <section className="ml-2 flex items-center">
           <div className="flex border-2 border-slate-500 rounded-md h-8">
-            <Input className="h-7  " value={"Quick Connect"} />
+            <Input className="h-7  " defaultValue={"Quick Connect"} />
             <ChevronDown className="w-5" />
           </div>
           <div className="ml-2 flex flex-col items-center justify-center hover:bg-blue-300/30 transition-all cursor-pointer h-20  ">
