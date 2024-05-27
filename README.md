@@ -1,5 +1,5 @@
 # Cyberduck Clone Project
-Welcome to the Cyberduck Clone Project repository! This project aims to create a web version of the popular Cyberduck application as part of a university project. Our team worked collaboratively to build this project, focusing on both the frontend and backend components.
+This project aims to create a web version of the popular Cyberduck application as part of a university project. Our team worked collaboratively to build this project, focusing on both the frontend and backend components.
 
 ## Project Overview
 The Cyberduck Clone Project is designed to replicate the core functionalities of Cyberduck, a well-known file transfer application. Due to time constraints, we have implemented essential features primarily on the backend, with limited functionalities on the frontend.
